@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
 {
     private Transform _playerTransform;
     private Transform _spellCastPoint;
+    private NavMeshAgent _navMeshAgent;
+    private Vector3 _moveDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,7 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
 
         _playerTransform = player.transform;
         _spellCastPoint = player.GetComponent<RFX4_EffectEvent>().AttachPoint;
+        _navMeshAgent = player.GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -34,6 +39,21 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
                 var lookPoint = new Vector3(hit.point.x, hit.normal.y, hit.point.z);
                 _playerTransform.LookAt(lookPoint);
                 _spellCastPoint.LookAt(lookPoint);
+            }
+        }
+
+        if (PlayerStateManager.Instance.CurrentState == PlayerState.Moving)
+        {
+            var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(ray, out var hit))
+            {
+                _navMeshAgent.destination = hit.point;
+
+                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+                {
+                    PlayerStateManager.Instance.SetState(PlayerState.Idle);
+                }
             }
         }
     }
