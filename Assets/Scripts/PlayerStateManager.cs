@@ -30,5 +30,6 @@ public class PlayerStateManager : SingletonBase<PlayerStateManager>
         var old = CurrentState;
         CurrentState = state;
         OnStateChanged.Invoke(old, CurrentState);
+        Debug.Log(CurrentState);
     }
 }

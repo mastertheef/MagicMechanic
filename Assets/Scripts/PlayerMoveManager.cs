@@ -11,6 +11,8 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
     private Transform _spellCastPoint;
     private NavMeshAgent _navMeshAgent;
     private Vector3 _moveDirection;
+    private Ray _ray;
+    private RaycastHit _hit;
 
     // Start is called before the first frame update
     void Start()
@@ -32,27 +34,31 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
     {
         if (PlayerStateManager.Instance.CurrentState == PlayerState.Attacking)
         {
-            var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            _navMeshAgent.isStopped = true;
 
-            if (Physics.Raycast(ray, out var hit))
+            _ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(_ray, out _hit))
             {
-                var lookPoint = new Vector3(hit.point.x, hit.normal.y, hit.point.z);
+                var lookPoint = new Vector3(_hit.point.x, _hit.normal.y, _hit.point.z);
                 _playerTransform.LookAt(lookPoint);
                 _spellCastPoint.LookAt(lookPoint);
             }
         }
 
-        if (PlayerStateManager.Instance.CurrentState == PlayerState.Moving)
+        if (Input.GetMouseButton(1))
         {
-            var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            PlayerStateManager.Instance.SetState(PlayerState.Moving); 
 
-            if (Physics.Raycast(ray, out var hit))
+            _ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(_ray, out _hit))
             {
-                _navMeshAgent.destination = hit.point;
+                _navMeshAgent.destination = _hit.point;
 
                 if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
                 {
-                    PlayerStateManager.Instance.SetState(PlayerState.Idle);
+                    //PlayerStateManager.Instance.SetState(PlayerState.Idle);
                 }
             }
         }

@@ -19,14 +19,4 @@ public class InputManager : SingletonBase<InputManager>
                 break;
         }
     }
-
-    public void OnMove(InputAction.CallbackContext ctx)
-    {
-        if (ctx.phase == InputActionPhase.Performed)
-        {
-            PlayerStateManager.Instance.SetState(PlayerState.Moving);
-        }
-
-        
-    }
 }
