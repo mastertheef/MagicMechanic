@@ -253,8 +253,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6131418}
-  m_LocalRotation: {x: 0.028061446, y: 0.93530595, z: -0.34439442, w: 0.07620931}
-  m_LocalPosition: {x: -1.73, y: 11.84, z: 17.94}
+  m_LocalRotation: {x: 0.021621773, y: 0.969874, z: -0.2238285, w: 0.09368961}
+  m_LocalPosition: {x: -3.7092316, y: 5.704377, z: 13.159841}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1590,21 +1590,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8588741c-ee13-4a7c-b8fc-a5e6074f2db3
     m_ActionName: Player/AutoAttack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1558591617}
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: bd648293-cea5-4278-b335-76e72d18b957
-    m_ActionName: Player/Move[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 719b5a4c-f545-42a6-9e10-f41d0f5b6b47
@@ -1889,37 +1874,37 @@ PrefabInstance:
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5311386
+      value: -3.2741663
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0431695
+      value: 3.451939
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.1686287
+      value: 10.255609
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.021621756
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7933534
+      value: 0.9698741
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.2238282
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6087614
+      value: 0.09368968
       objectReference: {fileID: 0}
     - target: {fileID: 3967441736559644928, guid: 345a012281d90a24ab8b018e77d2472d,
         type: 3}

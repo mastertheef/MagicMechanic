@@ -54,13 +54,23 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
 
             if (Physics.Raycast(_ray, out _hit))
             {
+                _navMeshAgent.isStopped = false;
                 _navMeshAgent.destination = _hit.point;
-
-                if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
-                {
-                    //PlayerStateManager.Instance.SetState(PlayerState.Idle);
-                }
             }
         }
+
+        if (GetDistance(_hit.point) <= _navMeshAgent.stoppingDistance && PlayerStateManager.Instance.CurrentState == PlayerState.Moving)
+        {
+            PlayerStateManager.Instance.SetState(PlayerState.Idle);
+        }
+    }
+
+    private float GetDistance(Vector3 target)
+    {
+        var distance = _navMeshAgent.pathPending
+            ? Vector3.Distance(target, _navMeshAgent.destination)
+            : _navMeshAgent.remainingDistance;
+        
+        return distance;
     }
 }
