@@ -18,22 +18,16 @@ public class PlayerAnimationManager : SingletonBase<PlayerAnimationManager>
 
         _playerAnimator = _player.GetComponent<Animator>();
 
-        PlayerStateManager.Instance.OnStateChanged += OnStateChanged;
+        //PlayerStateManager.Instance.OnStateChanged += OnStateChanged;
     }
 
-    private void OnStateChanged(PlayerState oldState, PlayerState newState)
+    public void Attack(bool attack)
     {
-        switch (newState)
-        {
-            case PlayerState.Attacking:
-                _playerAnimator.SetTrigger("Attack");
-                break;
-            case PlayerState.Moving:
-                _playerAnimator.SetTrigger("Move");
-                break;
-            case PlayerState.Idle:
-                _playerAnimator.SetTrigger("Idle");
-                break;
-        }
+        _playerAnimator.SetBool("IsAttacking", attack);
+    }
+
+    public void Move(bool move)
+    {
+        _playerAnimator.SetBool("IsMoving", move);
     }
 }

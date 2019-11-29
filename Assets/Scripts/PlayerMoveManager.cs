@@ -48,7 +48,7 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
 
         if (Input.GetMouseButton(1))
         {
-            PlayerStateManager.Instance.SetState(PlayerState.Moving); 
+            PlayerAnimationManager.Instance.Move(true);
 
             _ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
@@ -61,7 +61,7 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
 
         if (GetDistance(_hit.point) <= _navMeshAgent.stoppingDistance && PlayerStateManager.Instance.CurrentState == PlayerState.Moving)
         {
-            PlayerStateManager.Instance.SetState(PlayerState.Idle);
+            PlayerAnimationManager.Instance.Move(false);
         }
     }
 

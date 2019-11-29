@@ -18,18 +18,9 @@ public class PlayerStateManager : SingletonBase<PlayerStateManager>
 
     public PlayerState CurrentState { get; private set; }
 
-    public void Awake()
-    {
-        SetState(PlayerState.Idle);
-    }
-
     public void SetState(PlayerState state)
     {
         if (state == CurrentState) return;
-
-        var old = CurrentState;
         CurrentState = state;
-        OnStateChanged.Invoke(old, CurrentState);
-        //Debug.Log(CurrentState);
     }
 }

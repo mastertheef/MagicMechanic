@@ -5,14 +5,13 @@ public class InputManager : SingletonBase<InputManager>
 {
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        switch (ctx.phase)
+        if (ctx.phase == InputActionPhase.Performed)
         {
-            case InputActionPhase.Performed:
-                PlayerStateManager.Instance.SetState(PlayerState.Attacking);
-                break;
-            case InputActionPhase.Canceled:
-                PlayerStateManager.Instance.SetState(PlayerState.Idle);
-                break;
+            PlayerAnimationManager.Instance.Attack(true);
+        }
+        else if (ctx.phase == InputActionPhase.Canceled)
+        {
+            PlayerAnimationManager.Instance.Attack(false);
         }
     }
 }
