@@ -10,9 +10,10 @@ public class PlayerMoveManager : SingletonBase<PlayerMoveManager>
     private Transform _playerTransform;
     private Transform _spellCastPoint;
     private NavMeshAgent _navMeshAgent;
-    private Vector3 _moveDirection;
     private Ray _ray;
     private RaycastHit _hit;
+
+    public Vector3 PlayerPosition => _playerTransform.position;
 
     // Start is called before the first frame update
     void Start()

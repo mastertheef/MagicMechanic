@@ -15,12 +15,12 @@ public class ProjectileCollision : MonoBehaviour
     {
         var foundEnemies = Physics.OverlapSphere(collision.transform.position, _damageRadius)
             .Where(x => x.CompareTag(EnemyTag))
-            .Select(x => x.GetComponent<Enemy>())
+            .Select(x => x.GetComponent<EnemyBehaviour>())
             .ToList();
 
         if (collision.collider.CompareTag(EnemyTag))
         {
-            foundEnemies.Add(collision.collider.GetComponent<Enemy>());
+            foundEnemies.Add(collision.collider.GetComponent<EnemyBehaviour>());
         }
 
         foundEnemies.ForEach(x => x.ApplyDamage(Random.Range(_baseMinDamage, _baseMaxDamage)));
